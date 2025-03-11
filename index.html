@@ -2,24 +2,80 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>UNID - Podcast</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UNID - Podcast</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0;
+        }
+        .header img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        .podcast-title {
+            font-size: 60px;
+            font-weight: bold;
+            color: #333;
+        }
+        .subtitle {
+            font-size: 20px;
+            color: #666;
+            margin-top: -10px;
+        }
+        .player-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        video {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .info-box {
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="row text-center">
-            <img style="background-color: black;" src="https://cdn.prod.website-files.com/65d793cdff5a020500e4e8ea/664584613a5186a8924ce63b_unid-main-logo.svg"/>
-            <h1>PODCAST</h1>
+    <div class="container text-center">
+        <div class="header">
+            <img src="https://cdn.prod.website-files.com/65d793cdff5a020500e4e8ea/664584613a5186a8924ce63b_unid-main-logo.svg" alt="UNID Logo">
+            <div>
+                <span class="podcast-title">PODCAST</span>
+                <div class="subtitle">Actividad de Aprendizaje. Sesión 2. Podcast</div>
+            </div>
         </div>
-
-        <div class="row">
-            <video controls autoplay name="media"><source src="https://vera90.github.io/podcast.mp3" type="audio/mp3"></video>
+        
+        <div class="player-container">
+            <video controls autoplay name="media" poster="https://www.unid.edu.mx/images/default-source/default-album/podcast.png">
+                <source src="https://vera90.github.io/podcast.mp3" type="audio/mp3">
+            </video>
+        </div>
+        
+        <div class="info-box">
+            <h4>Instrucciones</h4>
+            <p>Para poner en práctica lo revisado en la sesión, estructura tu proyecto de investigación a través de un podcast, donde plasmes la definición del problema y el tipo de investigación que harás.</p>
+            <p>Deberás subir la actividad en la sección de tareas durante el tiempo estipulado para ello.</p>
+            <p>El formato de tu actividad dependerá del programa que utilices para realizar el podcast, el cual puede ser un formato mp4 o mp3. Integra en un documento Word junto con tus datos personales el enlace del sitio de descarga o visualización donde albergues tu actividad (nube de almacenamiento, YouTube). Recuerda que debe tener una duración de 4 minutos o más.</p>
+            <p>No olvides consultar la rúbrica de Podcast para conocer los aspectos que serán evaluados en la realización de tu actividad.</p>
         </div>
     </div>
-    
 </body>
 
 </html>
