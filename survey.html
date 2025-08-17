@@ -1,288 +1,300 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>DeliverIx · Cuestionario DNC (1–4)</title>
-<style>
-  :root{
-    --bg:#ffffff; --ink:#0f172a; --muted:#475569; --line:#e2e8f0; --accent:#0ea5e9;
-  }
-  html,body{background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;margin:0}
-  .container{max-width:980px;margin:auto;padding:24px}
-  header h1{margin:.25rem 0;font-size:1.6rem}
-  header p{margin:.25rem 0;color:var(--muted)}
-  .btnbar{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
-  .btn{
-    appearance:none;border:1px solid var(--accent);background:var(--accent);color:#fff;
-    border-radius:10px;padding:10px 14px;cursor:pointer;font-weight:600
-  }
-  .btn.secondary{background:#fff;color:var(--accent)}
-  .legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
-  .chip{font-size:.9rem;border:1px solid var(--line);border-radius:999px;padding:6px 10px;background:#f8fafc}
-  section{border:1px solid var(--line);border-radius:14px;background:#fff;padding:16px;margin:16px 0}
-  h2{margin:.25rem 0 8px}
-  h3{margin:10px 0 6px}
-  table{width:100%;border-collapse:collapse;margin-top:6px}
-  th,td{border:1px solid var(--line);padding:10px;vertical-align:top}
-  th{background:#f8fafc;text-align:left}
-  tr.section-row td{background:#f1f5f9;font-weight:700}
-  .muted{color:var(--muted);font-size:.95rem}
-  label.score{display:inline-flex;align-items:center;gap:6px}
-  input[type="radio"]{width:16px;height:16px}
-  @media (max-width:760px){ table{font-size:.95rem} }
-  @media print{ .btnbar{display:none!important} section{break-inside:avoid} }
-</style>
+  <meta charset="utf-8" />
+  <title>DeliverIx · Cuestionario DNC (1–4)</title>
+
+  <!-- Bootstrap 4.3.1 (tal como lo pediste) -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root{
+      --ink:#0f172a; --muted:#475569; --line:#e2e8f0; --accent:#0ea5e9; --bg:#ffffff;
+    }
+    body{color:var(--ink); background:var(--bg)}
+    .logo-unid{height:60px; width:auto}
+    .legend .badge{font-weight:600; border:1px solid #e2e8f0; background:#f8fafc; color:#111827}
+    .section-title{background:#f1f5f9; font-weight:700}
+    .muted{color:var(--muted)}
+    .table thead th{background:#f8fafc}
+    @media print{
+      .no-print{display:none !important}
+      .card{page-break-inside:avoid}
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>DeliverIx · Cuestionario de Detección de Necesidades de Capacitación</h1>
-      <p class="muted">Marca un nivel por ítem usando la escala:</p>
-      <div class="legend">
-        <span class="chip"><strong>1</strong> = Deficiente</span>
-        <span class="chip"><strong>2</strong> = Regular</span>
-        <span class="chip"><strong>3</strong> = Bueno</span>
-        <span class="chip"><strong>4</strong> = Excelente</span>
+  <div class="container my-4">
+
+    <!-- Encabezado con logo UNID -->
+    <header class="mb-3">
+      <div class="d-flex align-items-center">
+        <img class="logo-unid mr-3" src="https://cdn.prod.website-files.com/65d793cdff5a020500e4e8ea/664584613a5186a8924ce63b_unid-main-logo.svg" alt="UNID - Universidad Interamericana para el Desarrollo">
+        <div>
+          <h1 class="h4 mb-1">DeliverIx · Cuestionario de Detección de Necesidades de Capacitación</h1>
+          <div class="legend">
+            <span class="badge badge-pill mr-1">1 = Deficiente</span>
+            <span class="badge badge-pill mr-1">2 = Regular</span>
+            <span class="badge badge-pill mr-1">3 = Bueno</span>
+            <span class="badge badge-pill">4 = Excelente</span>
+          </div>
+          <small class="muted d-block mt-1">Marca un nivel por ítem (1–4).</small>
+        </div>
       </div>
     </header>
 
-    <div class="btnbar">
-      <button class="btn" onclick="window.print()">Imprimir / Guardar PDF</button>
-      <button class="btn secondary" onclick="limpiar()">Limpiar respuestas</button>
+    <!-- Botones -->
+    <div class="no-print mb-3">
+      <button class="btn btn-info mr-2" onclick="window.print()">Imprimir / Guardar PDF</button>
+      <button class="btn btn-outline-info" onclick="limpiar()">Limpiar respuestas</button>
     </div>
 
     <!-- REPARTIDOR -->
-    <section>
-      <h2>Repartidor DeliverIx (marcar 1–4)</h2>
-      <table aria-label="Repartidor DeliverIx">
-        <thead>
-          <tr>
-            <th style="width:58%">Ítem</th>
-            <th style="width:10%">1</th>
-            <th style="width:10%">2</th>
-            <th style="width:10%">3</th>
-            <th style="width:10%">4</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- A -->
-          <tr class="section-row"><td colspan="5">A. Uso de app DeliverIx</td></tr>
-          <tr>
-            <td>1) Inicio/fin de ruta y confirmo entregas sin errores.</td>
-            <td><label class="score"><input type="radio" name="r1" value="1"></label></td>
-            <td><label class="score"><input type="radio" name="r1" value="2"></label></td>
-            <td><label class="score"><input type="radio" name="r1" value="3"></label></td>
-            <td><label class="score"><input type="radio" name="r1" value="4"></label></td>
-          </tr>
-          <tr>
-            <td>2) Registro incidencias (dirección equivocada, cliente ausente) correctamente.</td>
-            <td><input type="radio" name="r2" value="1"></td>
-            <td><input type="radio" name="r2" value="2"></td>
-            <td><input type="radio" name="r2" value="3"></td>
-            <td><input type="radio" name="r2" value="4"></td>
-          </tr>
-          <tr>
-            <td>3) Sigo las indicaciones de navegación dentro de la app.</td>
-            <td><input type="radio" name="r3" value="1"></td>
-            <td><input type="radio" name="r3" value="2"></td>
-            <td><input type="radio" name="r3" value="3"></td>
-            <td><input type="radio" name="r3" value="4"></td>
-          </tr>
+    <section class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h2 class="h5 mb-3">Repartidor DeliverIx (marcar 1–4)</h2>
+        <div class="table-responsive">
+          <table class="table table-bordered table-sm">
+            <thead>
+              <tr>
+                <th style="width:58%">Ítem</th>
+                <th style="width:10%">1</th>
+                <th style="width:10%">2</th>
+                <th style="width:10%">3</th>
+                <th style="width:10%">4</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- A -->
+              <tr class="section-title"><td colspan="5">A. Uso de app DeliverIx</td></tr>
+              <tr>
+                <td>1) Inicio/fin de ruta y confirmo entregas sin errores.</td>
+                <td><input type="radio" name="r1" value="1"></td>
+                <td><input type="radio" name="r1" value="2"></td>
+                <td><input type="radio" name="r1" value="3"></td>
+                <td><input type="radio" name="r1" value="4"></td>
+              </tr>
+              <tr>
+                <td>2) Registro incidencias (dirección equivocada, cliente ausente) correctamente.</td>
+                <td><input type="radio" name="r2" value="1"></td>
+                <td><input type="radio" name="r2" value="2"></td>
+                <td><input type="radio" name="r2" value="3"></td>
+                <td><input type="radio" name="r2" value="4"></td>
+              </tr>
+              <tr>
+                <td>3) Sigo las indicaciones de navegación dentro de la app.</td>
+                <td><input type="radio" name="r3" value="1"></td>
+                <td><input type="radio" name="r3" value="2"></td>
+                <td><input type="radio" name="r3" value="3"></td>
+                <td><input type="radio" name="r3" value="4"></td>
+              </tr>
 
-          <!-- B -->
-          <tr class="section-row"><td colspan="5">B. Calidad en las entregas (puntualidad y exactitud)</td></tr>
-          <tr>
-            <td>4) Llego en los tiempos estimados.</td>
-            <td><input type="radio" name="r4" value="1"></td>
-            <td><input type="radio" name="r4" value="2"></td>
-            <td><input type="radio" name="r4" value="3"></td>
-            <td><input type="radio" name="r4" value="4"></td>
-          </tr>
-          <tr>
-            <td>5) Entrego el pedido correcto y completo.</td>
-            <td><input type="radio" name="r5" value="1"></td>
-            <td><input type="radio" name="r5" value="2"></td>
-            <td><input type="radio" name="r5" value="3"></td>
-            <td><input type="radio" name="r5" value="4"></td>
-          </tr>
-          <tr>
-            <td>6) Mantengo el producto en buen estado hasta la entrega.</td>
-            <td><input type="radio" name="r6" value="1"></td>
-            <td><input type="radio" name="r6" value="2"></td>
-            <td><input type="radio" name="r6" value="3"></td>
-            <td><input type="radio" name="r6" value="4"></td>
-          </tr>
+              <!-- B -->
+              <tr class="section-title"><td colspan="5">B. Calidad en las entregas (puntualidad y exactitud)</td></tr>
+              <tr>
+                <td>4) Llego en los tiempos estimados.</td>
+                <td><input type="radio" name="r4" value="1"></td>
+                <td><input type="radio" name="r4" value="2"></td>
+                <td><input type="radio" name="r4" value="3"></td>
+                <td><input type="radio" name="r4" value="4"></td>
+              </tr>
+              <tr>
+                <td>5) Entrego el pedido correcto y completo.</td>
+                <td><input type="radio" name="r5" value="1"></td>
+                <td><input type="radio" name="r5" value="2"></td>
+                <td><input type="radio" name="r5" value="3"></td>
+                <td><input type="radio" name="r5" value="4"></td>
+              </tr>
+              <tr>
+                <td>6) Mantengo el producto en buen estado hasta la entrega.</td>
+                <td><input type="radio" name="r6" value="1"></td>
+                <td><input type="radio" name="r6" value="2"></td>
+                <td><input type="radio" name="r6" value="3"></td>
+                <td><input type="radio" name="r6" value="4"></td>
+              </tr>
 
-          <!-- C -->
-          <tr class="section-row"><td colspan="5">C. Orientación y trato al cliente</td></tr>
-          <tr>
-            <td>7) Saludo, confirmo pedido y resuelvo dudas con amabilidad.</td>
-            <td><input type="radio" name="r7" value="1"></td>
-            <td><input type="radio" name="r7" value="2"></td>
-            <td><input type="radio" name="r7" value="3"></td>
-            <td><input type="radio" name="r7" value="4"></td>
-          </tr>
-          <tr>
-            <td>8) Manejo desacuerdos con calma y ofrezco alternativas.</td>
-            <td><input type="radio" name="r8" value="1"></td>
-            <td><input type="radio" name="r8" value="2"></td>
-            <td><input type="radio" name="r8" value="3"></td>
-            <td><input type="radio" name="r8" value="4"></td>
-          </tr>
+              <!-- C -->
+              <tr class="section-title"><td colspan="5">C. Orientación y trato al cliente</td></tr>
+              <tr>
+                <td>7) Saludo, confirmo pedido y resuelvo dudas con amabilidad.</td>
+                <td><input type="radio" name="r7" value="1"></td>
+                <td><input type="radio" name="r7" value="2"></td>
+                <td><input type="radio" name="r7" value="3"></td>
+                <td><input type="radio" name="r7" value="4"></td>
+              </tr>
+              <tr>
+                <td>8) Manejo desacuerdos con calma y ofrezco alternativas.</td>
+                <td><input type="radio" name="r8" value="1"></td>
+                <td><input type="radio" name="r8" value="2"></td>
+                <td><input type="radio" name="r8" value="3"></td>
+                <td><input type="radio" name="r8" value="4"></td>
+              </tr>
 
-          <!-- D -->
-          <tr class="section-row"><td colspan="5">D. Seguridad vial y prevención</td></tr>
-          <tr>
-            <td>9) Uso casco/elementos de seguridad y respeto reglamento.</td>
-            <td><input type="radio" name="r9" value="1"></td>
-            <td><input type="radio" name="r9" value="2"></td>
-            <td><input type="radio" name="r9" value="3"></td>
-            <td><input type="radio" name="r9" value="4"></td>
-          </tr>
-          <tr>
-            <td>10) Conduzco a velocidad adecuada y anticipo riesgos.</td>
-            <td><input type="radio" name="r10" value="1"></td>
-            <td><input type="radio" name="r10" value="2"></td>
-            <td><input type="radio" name="r10" value="3"></td>
-            <td><input type="radio" name="r10" value="4"></td>
-          </tr>
+              <!-- D -->
+              <tr class="section-title"><td colspan="5">D. Seguridad vial y prevención</td></tr>
+              <tr>
+                <td>9) Uso casco/elementos de seguridad y respeto reglamento.</td>
+                <td><input type="radio" name="r9" value="1"></td>
+                <td><input type="radio" name="r9" value="2"></td>
+                <td><input type="radio" name="r9" value="3"></td>
+                <td><input type="radio" name="r9" value="4"></td>
+              </tr>
+              <tr>
+                <td>10) Conduzco a velocidad adecuada y anticipo riesgos.</td>
+                <td><input type="radio" name="r10" value="1"></td>
+                <td><input type="radio" name="r10" value="2"></td>
+                <td><input type="radio" name="r10" value="3"></td>
+                <td><input type="radio" name="r10" value="4"></td>
+              </tr>
 
-          <!-- E -->
-          <tr class="section-row"><td colspan="5">E. Comunicación con administración / trabajo en equipo</td></tr>
-          <tr>
-            <td>11) Reporto cambios/incidencias oportunamente por los canales correctos.</td>
-            <td><input type="radio" name="r11" value="1"></td>
-            <td><input type="radio" name="r11" value="2"></td>
-            <td><input type="radio" name="r11" value="3"></td>
-            <td><input type="radio" name="r11" value="4"></td>
-          </tr>
-          <tr>
-            <td>12) Coordino con compañeros para cubrir picos o cambios de ruta.</td>
-            <td><input type="radio" name="r12" value="1"></td>
-            <td><input type="radio" name="r12" value="2"></td>
-            <td><input type="radio" name="r12" value="3"></td>
-            <td><input type="radio" name="r12" value="4"></td>
-          </tr>
-        </tbody>
-      </table>
+              <!-- E -->
+              <tr class="section-title"><td colspan="5">E. Comunicación con administración / trabajo en equipo</td></tr>
+              <tr>
+                <td>11) Reporto cambios/incidencias oportunamente por los canales correctos.</td>
+                <td><input type="radio" name="r11" value="1"></td>
+                <td><input type="radio" name="r11" value="2"></td>
+                <td><input type="radio" name="r11" value="3"></td>
+                <td><input type="radio" name="r11" value="4"></td>
+              </tr>
+              <tr>
+                <td>12) Coordino con compañeros para cubrir picos o cambios de ruta.</td>
+                <td><input type="radio" name="r12" value="1"></td>
+                <td><input type="radio" name="r12" value="2"></td>
+                <td><input type="radio" name="r12" value="3"></td>
+                <td><input type="radio" name="r12" value="4"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </section>
 
     <!-- ADMINISTRATIVO -->
-    <section>
-      <h2>Administrativo DeliverIx</h2>
-      <table aria-label="Administrativo DeliverIx">
-        <thead>
-          <tr>
-            <th style="width:58%">Ítem</th>
-            <th style="width:10%">1</th>
-            <th style="width:10%">2</th>
-            <th style="width:10%">3</th>
-            <th style="width:10%">4</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- A -->
-          <tr class="section-row"><td colspan="5">A. Control de inventarios / pedidos</td></tr>
-          <tr>
-            <td>1) Registo entradas/salidas sin errores.</td>
-            <td><input type="radio" name="a1" value="1"></td>
-            <td><input type="radio" name="a1" value="2"></td>
-            <td><input type="radio" name="a1" value="3"></td>
-            <td><input type="radio" name="a1" value="4"></td>
-          </tr>
-          <tr>
-            <td>2) Detecto y comunico faltantes o mermas a tiempo.</td>
-            <td><input type="radio" name="a2" value="1"></td>
-            <td><input type="radio" name="a2" value="2"></td>
-            <td><input type="radio" name="a2" value="3"></td>
-            <td><input type="radio" name="a2" value="4"></td>
-          </tr>
+    <section class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h2 class="h5 mb-3">Administrativo DeliverIx</h2>
+        <div class="table-responsive">
+          <table class="table table-bordered table-sm">
+            <thead>
+              <tr>
+                <th style="width:58%">Ítem</th>
+                <th style="width:10%">1</th>
+                <th style="width:10%">2</th>
+                <th style="width:10%">3</th>
+                <th style="width:10%">4</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- A -->
+              <tr class="section-title"><td colspan="5">A. Control de inventarios / pedidos</td></tr>
+              <tr>
+                <td>1) Registo entradas/salidas sin errores.</td>
+                <td><input type="radio" name="a1" value="1"></td>
+                <td><input type="radio" name="a1" value="2"></td>
+                <td><input type="radio" name="a1" value="3"></td>
+                <td><input type="radio" name="a1" value="4"></td>
+              </tr>
+              <tr>
+                <td>2) Detecto y comunico faltantes o mermas a tiempo.</td>
+                <td><input type="radio" name="a2" value="1"></td>
+                <td><input type="radio" name="a2" value="2"></td>
+                <td><input type="radio" name="a2" value="3"></td>
+                <td><input type="radio" name="a2" value="4"></td>
+              </tr>
 
-          <!-- B -->
-          <tr class="section-row"><td colspan="5">B. Calidad en reportes y registros</td></tr>
-          <tr>
-            <td>3) Entrego reportes completos y puntuales.</td>
-            <td><input type="radio" name="a3" value="1"></td>
-            <td><input type="radio" name="a3" value="2"></td>
-            <td><input type="radio" name="a3" value="3"></td>
-            <td><input type="radio" name="a3" value="4"></td>
-          </tr>
-          <tr>
-            <td>4) Mantengo archivos y datos actualizados.</td>
-            <td><input type="radio" name="a4" value="1"></td>
-            <td><input type="radio" name="a4" value="2"></td>
-            <td><input type="radio" name="a4" value="3"></td>
-            <td><input type="radio" name="a4" value="4"></td>
-          </tr>
+              <!-- B -->
+              <tr class="section-title"><td colspan="5">B. Calidad en reportes y registros</td></tr>
+              <tr>
+                <td>3) Entrego reportes completos y puntuales.</td>
+                <td><input type="radio" name="a3" value="1"></td>
+                <td><input type="radio" name="a3" value="2"></td>
+                <td><input type="radio" name="a3" value="3"></td>
+                <td><input type="radio" name="a3" value="4"></td>
+              </tr>
+              <tr>
+                <td>4) Mantengo archivos y datos actualizados.</td>
+                <td><input type="radio" name="a4" value="1"></td>
+                <td><input type="radio" name="a4" value="2"></td>
+                <td><input type="radio" name="a4" value="3"></td>
+                <td><input type="radio" name="a4" value="4"></td>
+              </tr>
 
-          <!-- C -->
-          <tr class="section-row"><td colspan="5">C. Comunicación efectiva</td></tr>
-          <tr>
-            <td>5) Coordino con repartidores y tiendas sin malentendidos.</td>
-            <td><input type="radio" name="a5" value="1"></td>
-            <td><input type="radio" name="a5" value="2"></td>
-            <td><input type="radio" name="a5" value="3"></td>
-            <td><input type="radio" name="a5" value="4"></td>
-          </tr>
-          <tr>
-            <td>6) Escalo incidencias con la información necesaria.</td>
-            <td><input type="radio" name="a6" value="1"></td>
-            <td><input type="radio" name="a6" value="2"></td>
-            <td><input type="radio" name="a6" value="3"></td>
-            <td><input type="radio" name="a6" value="4"></td>
-          </tr>
+              <!-- C -->
+              <tr class="section-title"><td colspan="5">C. Comunicación efectiva</td></tr>
+              <tr>
+                <td>5) Coordino con repartidores y tiendas sin malentendidos.</td>
+                <td><input type="radio" name="a5" value="1"></td>
+                <td><input type="radio" name="a5" value="2"></td>
+                <td><input type="radio" name="a5" value="3"></td>
+                <td><input type="radio" name="a5" value="4"></td>
+              </tr>
+              <tr>
+                <td>6) Escalo incidencias con la información necesaria.</td>
+                <td><input type="radio" name="a6" value="1"></td>
+                <td><input type="radio" name="a6" value="2"></td>
+                <td><input type="radio" name="a6" value="3"></td>
+                <td><input type="radio" name="a6" value="4"></td>
+              </tr>
 
-          <!-- D -->
-          <tr class="section-row"><td colspan="5">D. Liderazgo y coordinación (si aplica)</td></tr>
-          <tr>
-            <td>7) Asigno tareas con claridad y doy seguimiento.</td>
-            <td><input type="radio" name="a7" value="1"></td>
-            <td><input type="radio" name="a7" value="2"></td>
-            <td><input type="radio" name="a7" value="3"></td>
-            <td><input type="radio" name="a7" value="4"></td>
-          </tr>
-          <tr>
-            <td>8) Doy retroalimentación útil y oportuna.</td>
-            <td><input type="radio" name="a8" value="1"></td>
-            <td><input type="radio" name="a8" value="2"></td>
-            <td><input type="radio" name="a8" value="3"></td>
-            <td><input type="radio" name="a8" value="4"></td>
-          </tr>
+              <!-- D -->
+              <tr class="section-title"><td colspan="5">D. Liderazgo y coordinación (si aplica)</td></tr>
+              <tr>
+                <td>7) Asigno tareas con claridad y doy seguimiento.</td>
+                <td><input type="radio" name="a7" value="1"></td>
+                <td><input type="radio" name="a7" value="2"></td>
+                <td><input type="radio" name="a7" value="3"></td>
+                <td><input type="radio" name="a7" value="4"></td>
+              </tr>
+              <tr>
+                <td>8) Doy retroalimentación útil y oportuna.</td>
+                <td><input type="radio" name="a8" value="1"></td>
+                <td><input type="radio" name="a8" value="2"></td>
+                <td><input type="radio" name="a8" value="3"></td>
+                <td><input type="radio" name="a8" value="4"></td>
+              </tr>
 
-          <!-- E -->
-          <tr class="section-row"><td colspan="5">E. Toma de decisiones / delegación (si aplica)</td></tr>
-          <tr>
-            <td>9) Priorizar pedidos y reasignar rutas cuando es necesario.</td>
-            <td><input type="radio" name="a9" value="1"></td>
-            <td><input type="radio" name="a9" value="2"></td>
-            <td><input type="radio" name="a9" value="3"></td>
-            <td><input type="radio" name="a9" value="4"></td>
-          </tr>
-          <tr>
-            <td>10) Delego responsabilidades de forma adecuada.</td>
-            <td><input type="radio" name="a10" value="1"></td>
-            <td><input type="radio" name="a10" value="2"></td>
-            <td><input type="radio" name="a10" value="3"></td>
-            <td><input type="radio" name="a10" value="4"></td>
-          </tr>
-        </tbody>
-      </table>
+              <!-- E -->
+              <tr class="section-title"><td colspan="5">E. Toma de decisiones / delegación (si aplica)</td></tr>
+              <tr>
+                <td>9) Priorizar pedidos y reasignar rutas cuando es necesario.</td>
+                <td><input type="radio" name="a9" value="1"></td>
+                <td><input type="radio" name="a9" value="2"></td>
+                <td><input type="radio" name="a9" value="3"></td>
+                <td><input type="radio" name="a9" value="4"></td>
+              </tr>
+              <tr>
+                <td>10) Delego responsabilidades de forma adecuada.</td>
+                <td><input type="radio" name="a10" value="1"></td>
+                <td><input type="radio" name="a10" value="2"></td>
+                <td><input type="radio" name="a10" value="3"></td>
+                <td><input type="radio" name="a10" value="4"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </section>
 
-    <div class="btnbar">
-      <button class="btn" onclick="window.print()">Imprimir / Guardar PDF</button>
-      <button class="btn secondary" onclick="limpiar()">Limpiar respuestas</button>
+    <!-- Botones inferiores -->
+    <div class="no-print mb-5">
+      <button class="btn btn-info mr-2" onclick="window.print()">Imprimir / Guardar PDF</button>
+      <button class="btn btn-outline-info" onclick="limpiar()">Limpiar respuestas</button>
     </div>
 
-    <p class="muted">Sugerencia: imprime o guarda en PDF y anéxalo como evidencia de los instrumentos aplicados.</p>
+    <footer class="text-center text-muted small mb-4">
+      © DeliverIx · Instrumento de referencia para DNC
+    </footer>
   </div>
 
-<script>
-  function limpiar(){
-    document.querySelectorAll('input[type=radio]').forEach(el=>el.checked=false);
-    window.scrollTo({top:0,behavior:'smooth'});
-  }
-</script>
+  <script>
+    function limpiar(){
+      document.querySelectorAll('input[type=radio]').forEach(el=>el.checked=false);
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+  </script>
 </body>
 </html>
