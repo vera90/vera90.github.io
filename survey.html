@@ -3,274 +3,319 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>DeliverIx · Cuestionario de Detección de Necesidades de Capacitación (DNC)</title>
+<title>DeliverIx · Cuestionario DNC (1–4)</title>
 <style>
-  :root{
-    --bg:#ffffff; --ink:#0f172a; --muted:#475569; --line:#e2e8f0; --accent:#0ea5e9;
-  }
+  :root{--ink:#0f172a;--muted:#475569;--line:#e2e8f0;--accent:#0ea5e9;--bg:#fff}
   html,body{background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;margin:0}
-  .container{max-width:900px;margin:auto;padding:24px}
-  header h1{margin:.25rem 0 0;font-size:1.5rem}
+  .container{max-width:980px;margin:auto;padding:24px}
+  header h1{margin:.25rem 0 0;font-size:1.6rem}
   header p{margin:.25rem 0;color:var(--muted)}
   .card{border:1px solid var(--line);border-radius:12px;padding:16px;margin:16px 0;background:#fff}
   .grid{display:grid;gap:12px}
-  .grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
   label{font-weight:600}
-  input[type="text"], input[type="date"], select, textarea{
+  input[type="text"], input[type="date"], textarea{
     width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;background:#fff
   }
   textarea{min-height:110px;resize:vertical}
   table{width:100%;border-collapse:collapse;margin-top:8px}
-  th,td{border:1px solid var(--line);padding:10px;vertical-align:top}
-  th{background:#f8fafc;text-align:left;font-weight:700}
+  th,td{border:1px solid var(--line);padding:8px;vertical-align:top}
+  th{background:#f8fafc;text-align:left}
   .note{color:var(--muted);font-size:.9rem}
   .btnbar{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
-  .btn{
-    appearance:none;border:1px solid var(--accent);background:var(--accent);
-    color:#fff;border-radius:10px;padding:10px 14px;cursor:pointer;font-weight:600
-  }
+  .btn{appearance:none;border:1px solid var(--accent);background:var(--accent);color:#fff;border-radius:10px;padding:10px 14px;cursor:pointer;font-weight:600}
   .btn.secondary{background:#fff;color:var(--accent)}
-  details{border:1px dashed var(--line);border-radius:10px;padding:10px;margin-top:8px}
-  details>summary{cursor:pointer;font-weight:700}
+  .legend{display:inline-block;padding:6px 10px;border:1px dashed var(--line);border-radius:8px}
   .sigline{height:48px;border-bottom:1px solid var(--ink);margin-top:28px}
-  @media (max-width:720px){ .grid.cols-2{grid-template-columns:1fr} }
-  /* Estilo impresión */
-  @media print{
-    .btnbar, .note, details{display:none!important}
-    body{background:#fff}
-    .card{break-inside:avoid}
-  }
+  @media (max-width:740px){ .cols-2{grid-template-columns:1fr} table{font-size:.95rem} }
+  @media print{ .btnbar,.note{display:none!important} .card{break-inside:avoid} }
 </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <p class="note">Referencia para aplicación del instrumento (impresión o herramienta formal). </p>
-      <h1>DeliverIx · Cuestionario de Detección de Necesidades de Capacitación (DNC)</h1>
-      <p>Basado en Formato 3 (adaptado). Use una hoja por colaborador.</p>
-    </header>
+<div class="container">
+  <header>
+    <h1>DeliverIx · Cuestionario de Detección de Necesidades de Capacitación</h1>
+    <p class="note">Escala <span class="legend">1 = Deficiente · 2 = Regular · 3 = Bueno · 4 = Excelentes</span></p>
+  </header>
 
-    <div class="btnbar">
-      <button class="btn" onclick="window.print()">Imprimir / Guardar PDF</button>
-      <a class="btn secondary" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'})">Subir</a>
-    </div>
-
-    <!-- DATOS GENERALES -->
-    <section class="card">
-      <h2>Datos de identificación</h2>
-      <div class="grid cols-2">
-        <div>
-          <label for="empresa">Empresa</label>
-          <input id="empresa" type="text" value="DeliverIx" />
-        </div>
-        <div>
-          <label for="fecha">Fecha</label>
-          <input id="fecha" type="date" />
-        </div>
-        <div>
-          <label for="nombre">Nombre del trabajador</label>
-          <input id="nombre" type="text" placeholder="Nombre completo" />
-        </div>
-        <div>
-          <label for="puesto">Área / Puesto</label>
-          <input id="puesto" type="text" placeholder="Repartidor, Encargado administrativo, etc." />
-        </div>
-      </div>
-    </section>
-
-    <!-- PARTE I -->
-    <section class="card">
-      <h2>Parte I. Descripción de funciones</h2>
-      <p class="note">Enumere las actividades principales que realiza en su puesto.</p>
-      <ol>
-        <li><input type="text" placeholder="Actividad 1"/></li>
-        <li><input type="text" placeholder="Actividad 2"/></li>
-        <li><input type="text" placeholder="Actividad 3"/></li>
-        <li><input type="text" placeholder="Actividad 4"/></li>
-        <li><input type="text" placeholder="Actividad 5"/></li>
-      </ol>
-    </section>
-
-    <!-- PARTE II: COMPETENCIAS -->
-    <section class="card">
-      <h2>Parte II. Evaluación de competencias</h2>
-      <p class="note">Marque un nivel por competencia. (Excelente / Bueno / Regular / Deficiente / No aplica)</p>
-
-      <details open>
-        <summary>Bloque A · Repartidores</summary>
-        <table aria-label="Competencias Repartidores">
-          <thead>
-            <tr>
-              <th>Competencia</th>
-              <th>Excelente</th>
-              <th>Bueno</th>
-              <th>Regular</th>
-              <th>Deficiente</th>
-              <th>No aplica</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Conocimiento del uso de la app DeliverIx</td>
-              <td><input type="checkbox" aria-label="Excelente app" /></td>
-              <td><input type="checkbox" aria-label="Bueno app" /></td>
-              <td><input type="checkbox" aria-label="Regular app" /></td>
-              <td><input type="checkbox" aria-label="Deficiente app" /></td>
-              <td><input type="checkbox" aria-label="No aplica app" /></td>
-            </tr>
-            <tr>
-              <td>Calidad en entregas (puntualidad, exactitud)</td>
-              <td><input type="checkbox" /></td><td><input type="checkbox" /></td>
-              <td><input type="checkbox" /></td><td><input type="checkbox" /></td>
-              <td><input type="checkbox" /></td>
-            </tr>
-            <tr>
-              <td>Orientación y trato al cliente</td>
-              <td><input type="checkbox" /></td><td><input type="checkbox" /></td>
-              <td><input type="checkbox" /></td><td><input type="checkbox" /></td>
-              <td><input type="checkbox" /></td>
-            </tr>
-            <tr>
-              <td>Seguridad vial y prevención de accidentes</td>
-              <td><input type="checkbox" /></td><td><input type="checkbox" /></td>
-              <td><input type="checkbox" /></td><td><input type="checkbox" /></td>
-              <td><input type="checkbox" /></td>
-            </tr>
-            <tr>
-              <td>Comunicación con el área administrativa</td>
-              <td><input type="checkbox" /></td><td><input type="checkbox" /></td>
-              <td><input type="checkbox" /></td><td><input type="checkbox" /></td>
-              <td><input type="checkbox" /></td>
-            </tr>
-            <tr>
-              <td>Trabajo en equipo</td>
-              <td><input type="checkbox" /></td><td><input type="checkbox" /></td>
-              <td><input type="checkbox" /></td><td><input type="checkbox" /></td>
-              <td><input type="checkbox" /></td>
-            </tr>
-          </tbody>
-        </table>
-      </details>
-
-      <details>
-        <summary>Bloque B · Administrativo</summary>
-        <table aria-label="Competencias Administrativo">
-          <thead>
-            <tr>
-              <th>Competencia</th>
-              <th>Excelente</th>
-              <th>Bueno</th>
-              <th>Regular</th>
-              <th>Deficiente</th>
-              <th>No aplica</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Conocimiento en control de inventarios</td>
-              <td><input type="checkbox" /></td><td><input type="checkbox" /></td>
-              <td><input type="checkbox" /></td><td><input type="checkbox" /></td>
-              <td><input type="checkbox" /></td>
-            </tr>
-            <tr>
-              <td>Calidad en reportes y registros</td>
-              <td><input type="checkbox" /></td><td><input type="checkbox" /></td>
-              <td><input type="checkbox" /></td><td><input type="checkbox" /></td>
-              <td><input type="checkbox" /></td>
-            </tr>
-            <tr>
-              <td>Comunicación efectiva</td>
-              <td><input type="checkbox" /></td><td><input type="checkbox" /></td>
-              <td><input type="checkbox" /></td><td><input type="checkbox" /></td>
-              <td><input type="checkbox" /></td>
-            </tr>
-            <tr>
-              <td>Liderazgo y coordinación</td>
-              <td><input type="checkbox" /></td><td><input type="checkbox" /></td>
-              <td><input type="checkbox" /></td><td><input type="checkbox" /></td>
-              <td><input type="checkbox" /></td>
-            </tr>
-            <tr>
-              <td>Toma de decisiones / Delegación (si aplica)</td>
-              <td><input type="checkbox" /></td><td><input type="checkbox" /></td>
-              <td><input type="checkbox" /></td><td><input type="checkbox" /></td>
-              <td><input type="checkbox" /></td>
-            </tr>
-          </tbody>
-        </table>
-      </details>
-
-      <p class="note">Sugerencia: si vas a imprimir solo un bloque, cierra el otro usando el triángulo del encabezado.</p>
-    </section>
-
-    <!-- PARTE III: CURSOS -->
-    <section class="card">
-      <h2>Parte III. Cursos requeridos</h2>
-      <p class="note">Indique hasta 3 cursos, su prioridad y justifique brevemente.</p>
-      <table aria-label="Cursos requeridos">
-        <thead>
-          <tr>
-            <th>Curso requerido</th>
-            <th>Prioridad (Baja / Media / Alta)</th>
-            <th>Justificación</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><input type="text" placeholder="Ej. Uso avanzado de la app DeliverIx" /></td>
-            <td>
-              <label><input type="checkbox" /> Baja</label>
-              <label><input type="checkbox" /> Media</label>
-              <label><input type="checkbox" /> Alta</label>
-            </td>
-            <td><input type="text" placeholder="¿Por qué es necesario?" /></td>
-          </tr>
-          <tr>
-            <td><input type="text" placeholder="Ej. Atención y servicio al cliente" /></td>
-            <td>
-              <label><input type="checkbox" /> Baja</label>
-              <label><input type="checkbox" /> Media</label>
-              <label><input type="checkbox" /> Alta</label>
-            </td>
-            <td><input type="text" placeholder="Impacto esperado" /></td>
-          </tr>
-          <tr>
-            <td><input type="text" placeholder="Ej. Seguridad vial" /></td>
-            <td>
-              <label><input type="checkbox" /> Baja</label>
-              <label><input type="checkbox" /> Media</label>
-              <label><input type="checkbox" /> Alta</label>
-            </td>
-            <td><input type="text" placeholder="Riesgo a mitigar / mejora clave" /></td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <!-- COMENTARIOS Y FIRMAS -->
-    <section class="card">
-      <h2>Comentarios adicionales</h2>
-      <textarea placeholder="Observaciones del trabajador o del jefe inmediato..."></textarea>
-
-      <div class="grid cols-2">
-        <div>
-          <div class="sigline"></div>
-          <p class="note">Firma del trabajador(a)</p>
-        </div>
-        <div>
-          <div class="sigline"></div>
-          <p class="note">Firma del jefe(a) inmediato</p>
-        </div>
-      </div>
-      <p class="note">
-        *Este instrumento es para identificar necesidades de capacitación. La programación de cursos está sujeta
-        a prioridad, disponibilidad y validación de las autoridades correspondientes.
-      </p>
-    </section>
-
-    <footer class="note" style="margin:24px 0;text-align:center">
-      © DeliverIx · Instrumento de referencia para DNC
-    </footer>
+  <div class="btnbar">
+    <button class="btn" onclick="window.print()">Imprimir / Guardar PDF</button>
+    <button class="btn secondary" onclick="clearAll()">Limpiar respuestas</button>
   </div>
+
+  <!-- DATOS -->
+  <section class="card">
+    <h2>Datos de identificación</h2>
+    <div class="grid cols-2">
+      <div>
+        <label>Empresa</label>
+        <input type="text" value="DeliverIx" />
+      </div>
+      <div>
+        <label>Fecha</label>
+        <input type="date" />
+      </div>
+      <div>
+        <label>Nombre del trabajador</label>
+        <input type="text" placeholder="Nombre completo" />
+      </div>
+      <div>
+        <label>Área / Puesto</label>
+        <input type="text" placeholder="Repartidor / Administrativo" />
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTE I -->
+  <section class="card">
+    <h2>Parte I. Descripción de funciones</h2>
+    <p class="note">Enumere las actividades principales que realiza en su puesto.</p>
+    <ol>
+      <li><input type="text" placeholder="Actividad 1" /></li>
+      <li><input type="text" placeholder="Actividad 2" /></li>
+      <li><input type="text" placeholder="Actividad 3" /></li>
+      <li><input type="text" placeholder="Actividad 4" /></li>
+      <li><input type="text" placeholder="Actividad 5" /></li>
+    </ol>
+  </section>
+
+  <!-- PARTE II -->
+  <section class="card">
+    <h2>Parte II. Evaluación de competencias (marque 1–4)</h2>
+
+    <!-- REPARTIDOR -->
+    <h3>Repartidor DeliverIx</h3>
+    <table aria-label="Repartidor DeliverIx (1–4)">
+      <thead>
+      <tr>
+        <th style="width:60%">Ítem</th>
+        <th style="width:10%">1</th>
+        <th style="width:10%">2</th>
+        <th style="width:10%">3</th>
+        <th style="width:10%">4</th>
+      </tr>
+      </thead>
+      <tbody>
+        <!-- A. Uso de app DeliverIx -->
+        <tr><td><strong>A. Uso de app DeliverIx</strong></td><td></td><td></td><td></td><td></td></tr>
+        <tr>
+          <td>1) Inicio/fin de ruta y confirmo entregas sin errores.</td>
+          <td><input type="radio" name="r1" /></td><td><input type="radio" name="r1" /></td>
+          <td><input type="radio" name="r1" /></td><td><input type="radio" name="r1" /></td>
+        </tr>
+        <tr>
+          <td>2) Registro incidencias (dirección equivocada, cliente ausente) correctamente.</td>
+          <td><input type="radio" name="r2" /></td><td><input type="radio" name="r2" /></td>
+          <td><input type="radio" name="r2" /></td><td><input type="radio" name="r2" /></td>
+        </tr>
+        <tr>
+          <td>3) Sigo las indicaciones de navegación dentro de la app.</td>
+          <td><input type="radio" name="r3" /></td><td><input type="radio" name="r3" /></td>
+          <td><input type="radio" name="r3" /></td><td><input type="radio" name="r3" /></td>
+        </tr>
+
+        <!-- B. Calidad -->
+        <tr><td><strong>B. Calidad en las entregas (puntualidad y exactitud)</strong></td><td></td><td></td><td></td><td></td></tr>
+        <tr>
+          <td>4) Llego en los tiempos estimados.</td>
+          <td><input type="radio" name="r4" /></td><td><input type="radio" name="r4" /></td>
+          <td><input type="radio" name="r4" /></td><td><input type="radio" name="r4" /></td>
+        </tr>
+        <tr>
+          <td>5) Entrego el pedido correcto y completo.</td>
+          <td><input type="radio" name="r5" /></td><td><input type="radio" name="r5" /></td>
+          <td><input type="radio" name="r5" /></td><td><input type="radio" name="r5" /></td>
+        </tr>
+        <tr>
+          <td>6) Mantengo el producto en buen estado hasta la entrega.</td>
+          <td><input type="radio" name="r6" /></td><td><input type="radio" name="r6" /></td>
+          <td><input type="radio" name="r6" /></td><td><input type="radio" name="r6" /></td>
+        </tr>
+
+        <!-- C. Cliente -->
+        <tr><td><strong>C. Orientación y trato al cliente</strong></td><td></td><td></td><td></td><td></td></tr>
+        <tr>
+          <td>7) Saludo, confirmo pedido y resuelvo dudas con amabilidad.</td>
+          <td><input type="radio" name="r7" /></td><td><input type="radio" name="r7" /></td>
+          <td><input type="radio" name="r7" /></td><td><input type="radio" name="r7" /></td>
+        </tr>
+        <tr>
+          <td>8) Manejo desacuerdos con calma y ofrezco alternativas.</td>
+          <td><input type="radio" name="r8" /></td><td><input type="radio" name="r8" /></td>
+          <td><input type="radio" name="r8" /></td><td><input type="radio" name="r8" /></td>
+        </tr>
+
+        <!-- D. Seguridad -->
+        <tr><td><strong>D. Seguridad vial y prevención</strong></td><td></td><td></td><td></td><td></td></tr>
+        <tr>
+          <td>9) Uso casco/elementos de seguridad y respeto reglamento.</td>
+          <td><input type="radio" name="r9" /></td><td><input type="radio" name="r9" /></td>
+          <td><input type="radio" name="r9" /></td><td><input type="radio" name="r9" /></td>
+        </tr>
+        <tr>
+          <td>10) Conduzco a velocidad adecuada y anticipo riesgos.</td>
+          <td><input type="radio" name="r10" /></td><td><input type="radio" name="r10" /></td>
+          <td><input type="radio" name="r10" /></td><td><input type="radio" name="r10" /></td>
+        </tr>
+
+        <!-- E. Comunicación / equipo -->
+        <tr><td><strong>E. Comunicación con administración / trabajo en equipo</strong></td><td></td><td></td><td></td><td></td></tr>
+        <tr>
+          <td>11) Reporto cambios/incidencias oportunamente por los canales correctos.</td>
+          <td><input type="radio" name="r11" /></td><td><input type="radio" name="r11" /></td>
+          <td><input type="radio" name="r11" /></td><td><input type="radio" name="r11" /></td>
+        </tr>
+        <tr>
+          <td>12) Coordino con compañeros para cubrir picos o cambios de ruta.</td>
+          <td><input type="radio" name="r12" /></td><td><input type="radio" name="r12" /></td>
+          <td><input type="radio" name="r12" /></td><td><input type="radio" name="r12" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- ADMINISTRATIVO -->
+    <h3 style="margin-top:24px">Administrativo DeliverIx</h3>
+    <table aria-label="Administrativo DeliverIx (1–4)">
+      <thead>
+      <tr>
+        <th style="width:60%">Ítem</th>
+        <th style="width:10%">1</th>
+        <th style="width:10%">2</th>
+        <th style="width:10%">3</th>
+        <th style="width:10%">4</th>
+      </tr>
+      </thead>
+      <tbody>
+        <!-- A. Control de inventarios / pedidos -->
+        <tr><td><strong>A. Control de inventarios / pedidos</strong></td><td></td><td></td><td></td><td></td></tr>
+        <tr>
+          <td>1) Registro entradas/salidas sin errores.</td>
+          <td><input type="radio" name="a1" /></td><td><input type="radio" name="a1" /></td>
+          <td><input type="radio" name="a1" /></td><td><input type="radio" name="a1" /></td>
+        </tr>
+        <tr>
+          <td>2) Detecto y comunico faltantes o mermas a tiempo.</td>
+          <td><input type="radio" name="a2" /></td><td><input type="radio" name="a2" /></td>
+          <td><input type="radio" name="a2" /></td><td><input type="radio" name="a2" /></td>
+        </tr>
+
+        <!-- B. Reportes -->
+        <tr><td><strong>B. Calidad en reportes y registros</strong></td><td></td><td></td><td></td><td></td></tr>
+        <tr>
+          <td>3) Entrego reportes completos y puntuales.</td>
+          <td><input type="radio" name="a3" /></td><td><input type="radio" name="a3" /></td>
+          <td><input type="radio" name="a3" /></td><td><input type="radio" name="a3" /></td>
+        </tr>
+        <tr>
+          <td>4) Mantengo archivos y datos actualizados.</td>
+          <td><input type="radio" name="a4" /></td><td><input type="radio" name="a4" /></td>
+          <td><input type="radio" name="a4" /></td><td><input type="radio" name="a4" /></td>
+        </tr>
+
+        <!-- C. Comunicación -->
+        <tr><td><strong>C. Comunicación efectiva</strong></td><td></td><td></td><td></td><td></td></tr>
+        <tr>
+          <td>5) Coordino con repartidores y tiendas sin malentendidos.</td>
+          <td><input type="radio" name="a5" /></td><td><input type="radio" name="a5" /></td>
+          <td><input type="radio" name="a5" /></td><td><input type="radio" name="a5" /></td>
+        </tr>
+        <tr>
+          <td>6) Escalo incidencias con la información necesaria.</td>
+          <td><input type="radio" name="a6" /></td><td><input type="radio" name="a6" /></td>
+          <td><input type="radio" name="a6" /></td><td><input type="radio" name="a6" /></td>
+        </tr>
+
+        <!-- D. Liderazgo -->
+        <tr><td><strong>D. Liderazgo y coordinación (si aplica)</strong></td><td></td><td></td><td></td><td></td></tr>
+        <tr>
+          <td>7) Asigno tareas con claridad y doy seguimiento.</td>
+          <td><input type="radio" name="a7" /></td><td><input type="radio" name="a7" /></td>
+          <td><input type="radio" name="a7" /></td><td><input type="radio" name="a7" /></td>
+        </tr>
+        <tr>
+          <td>8) Doy retroalimentación útil y oportuna.</td>
+          <td><input type="radio" name="a8" /></td><td><input type="radio" name="a8" /></td>
+          <td><input type="radio" name="a8" /></td><td><input type="radio" name="a8" /></td>
+        </tr>
+
+        <!-- E. Decisiones / delegación -->
+        <tr><td><strong>E. Toma de decisiones / delegación (si aplica)</strong></td><td></td><td></td><td></td><td></td></tr>
+        <tr>
+          <td>9) Priorizar pedidos y reasignar rutas cuando es necesario.</td>
+          <td><input type="radio" name="a9" /></td><td><input type="radio" name="a9" /></td>
+          <td><input type="radio" name="a9" /></td><td><input type="radio" name="a9" /></td>
+        </tr>
+        <tr>
+          <td>10) Delego responsabilidades de forma adecuada.</td>
+          <td><input type="radio" name="a10" /></td><td><input type="radio" name="a10" /></td>
+          <td><input type="radio" name="a10" /></td><td><input type="radio" name="a10" /></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- PARTE III -->
+  <section class="card">
+    <h2>Parte III. Cursos requeridos</h2>
+    <p class="note">Indique hasta 3 cursos, su prioridad y justifique brevemente.</p>
+    <table aria-label="Cursos requeridos">
+      <thead>
+        <tr><th>Curso requerido</th><th>Prioridad (Baja / Media / Alta)</th><th>Justificación</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" placeholder="Ej. Uso avanzado de la app DeliverIx" /></td>
+          <td>
+            <label><input type="checkbox" /> Baja</label>
+            <label><input type="checkbox" /> Media</label>
+            <label><input type="checkbox" /> Alta</label>
+          </td>
+          <td><input type="text" placeholder="¿Por qué es necesario?" /></td>
+        </tr>
+        <tr>
+          <td><input type="text" placeholder="Ej. Atención y servicio al cliente" /></td>
+          <td>
+            <label><input type="checkbox" /> Baja</label>
+            <label><input type="checkbox" /> Media</label>
+            <label><input type="checkbox" /> Alta</label>
+          </td>
+          <td><input type="text" placeholder="Impacto esperado" /></td>
+        </tr>
+        <tr>
+          <td><input type="text" placeholder="Ej. Seguridad vial" /></td>
+          <td>
+            <label><input type="checkbox" /> Baja</label>
+            <label><input type="checkbox" /> Media</label>
+            <label><input type="checkbox" /> Alta</label>
+          </td>
+          <td><input type="text" placeholder="Riesgo a mitigar / mejora clave" /></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- COMENTARIOS/FIRMAS -->
+  <section class="card">
+    <h2>Comentarios adicionales</h2>
+    <textarea placeholder="Observaciones del trabajador o del jefe inmediato..."></textarea>
+    <div class="grid cols-2">
+      <div><div class="sigline"></div><p class="note">Firma del trabajador(a)</p></div>
+      <div><div class="sigline"></div><p class="note">Firma del jefe(a) inmediato</p></div>
+    </div>
+    <p class="note">Este instrumento es de referencia. Para aplicación formal, use impresión o una herramienta de encuestas.</p>
+  </section>
+
+  <footer class="note" style="text-align:center;margin:24px 0">© DeliverIx · Cuestionario DNC</footer>
+</div>
+
+<script>
+  // Marcar columnas 1–4 como exclusivas por fila (comportamiento radio con 4 opciones)
+  // (Ya usamos name por fila, pero esto permite "limpiar todo" fácil)
+  function clearAll(){
+    document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach(el=>el.checked=false);
+    document.querySelectorAll('input[type=text], input[type=date], textarea').forEach(el=>el.value='');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+</script>
 </body>
 </html>
